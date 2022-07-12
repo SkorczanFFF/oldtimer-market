@@ -1,0 +1,98 @@
+<!-- annouceAdd page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	
+	<h:head>
+		<title>Edytuj Ogłoszenie - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+		
+			<div class="contaitner-small" style="width:70%; height: 100%; background-color: #1a1a1a; margin-left: auto; margin-right: auto; margin-bottom: 10px; padding-bottom: 5em; display: block; z-index: -1;">
+				<div class="containter-large" style=" margin-left: 2em; margin-right: 2em; padding-top: 2em;z-index: -1;">
+				    <br></br>
+				<legend style="font-size: 225%; margin: auto; text-align: center; color:#E6E6EE;">EDYTUJ OGŁOSZENIE</legend>
+				    <br></br>
+					<h:form styleClass="pure-form pure-form-stacked" rendered="#{carEditBB.car != null}">
+					    <div class="form-row">
+					        <div class="col-md-12 mb-3">
+					            <label>Tytuł</label>
+					            <h:inputText value="#{carEditBB.car.title}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-6 mb-3">
+					            <label>Marka</label>
+					            <h:inputText value="#{carEditBB.car.brand}" required="true" requiredMessage="Podaj markę!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-6 mb-3">
+					            <label>Model</label>
+					            <h:inputText value="#{carEditBB.car.model}" required="true" requiredMessage="Podaj model!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Przebieg</label>
+					            <h:inputText value="#{carEditBB.car.mileage}" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Rok produkcji</label>
+					            <h:inputText value="#{carEditBB.car.year}" required="true" requiredMessage="Podaj rok produkcji!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div> 
+					        <div class="col-md-2 mb-3">
+					            <label>Pojemność silnika</label>
+					            <h:inputText value="#{carEditBB.car.engine}" required="true" requiredMessage="Podaj email!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>   
+					        <div class="col-md-2 mb-3">
+					            <label>Moc</label>
+					            <h:inputText value="#{carEditBB.car.horsepower}" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Cena</label>
+					            <h:inputText value="#{carEditBB.car.price}" required="true" requiredMessage="Podaj cenę!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Lokalizacja</label>
+					            <h:inputText value="#{carEditBB.car.localization}" required="true" requiredMessage="Podaj lokalizację!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					    </div>
+
+				        <div class="form-group">
+				            <label for="stuffarea" id="stuff">Opis ogłoszenia</label>
+				            <h:inputTextarea value="#{carEditBB.car.content}" rows="10" style="width: 100%;" />
+				        </div>
+						
+						<div class="form-row">
+							<div class="col-md-12 mb-3">
+					          	<label>Linki do zdjęć</label>
+					            <h:inputText value="#{carEditBB.car.pic1}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-12 mb-3">
+					            <h:inputText value="#{carEditBB.car.pic2}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-12 mb-3">
+					            <h:inputText value="#{carEditBB.car.pic3}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-12 mb-3">
+					            <h:inputText value="#{carEditBB.car.pic4}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-12 mb-3">
+					            <h:inputText value="#{carEditBB.car.pic5}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-12 mb-3">
+					            <h:inputText value="#{carEditBB.car.pic6}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+						</div>
+				        <p:commandButton value="ZAPISZ" action="#{carEditBB.saveData()}" update="messages" styleClass="btn btn-secondary" style="font-weight: normal; float:right; border-radius: 0; background-color:#FFFFFF; color: black;" />
+				  
+				        <input type="hidden" name="id_ann" value="{$annouceForm->id_ann}"></input>
+				</h:form>
+				</div>
+			</div>
+	</ui:define>
+</ui:composition>
+

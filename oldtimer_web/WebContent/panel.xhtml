@@ -1,0 +1,147 @@
+<!-- index page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	
+	<h:head>
+		<title>Strona główna - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+				
+		<div class="contaitner-small" style="max-width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 10px; display: block; z-index: -1;">    
+			<div class="users" style="padding: 1em 1em 0em 1em; height: 100%; width: 100%; background-color: #eaeaea; padding-bottom: 1em; margin-bottom: 1em;">
+				<h1>UŻYTKOWNICY</h1>
+		<h:form id="form-USERS" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowego użytkownika"
+			action="#{adminPanelBB.newUser()}" style="margin: 1em 0em 1em 0em;"/>
+
+		<p:dataTable value="#{adminPanelBB.list}" var="u">
+
+			<p:column priority="5" style="width:20%;">
+				<f:facet name="header">
+					<h:outputText value="Nick" />
+				</f:facet>
+					<h:outputText value="#{u.nick}" />
+			</p:column>
+			
+			<p:column priority="5" style="width:30%;">
+				<f:facet name="header">
+					<h:outputText value="email" />
+				</f:facet>
+				<h:outputText value="#{u.mail}" action="#{carListBB.profile(u)}"/>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header" style="width: 10%;">
+					<h:outputText value="hasło" />
+				</f:facet>
+				<h:outputText value="*****" />
+			</p:column>
+			
+			<p:column priority="3" style="width:15%;">
+				<f:facet name="header">
+					<h:outputText value="numer tel." />
+				</f:facet>
+				<h:outputText value="#{u.number}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column priority="3" style="width:10%;">
+				<f:facet name="header">
+					<h:outputText value="rola" />
+				</f:facet>
+				<h:outputText value="#{u.role}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column style="width:15%;">
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{adminPanelBB.editUser(u)}" style="margin-bottom: 3px;"/>
+
+				<p:commandButton value="Usuń"
+					action="#{adminPanelBB.deleteUser(u)}" update="@form" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+			</div>
+			
+				
+				
+	<div class="annouces" style="height: 100%; width: 100%; background-color: #1a1a1a; padding-bottom: 1em;">
+		<h1 style="color: #aeaeae; padding: 1em 1em 0em 1em;">OGŁOSZENIA</h1>
+				
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowe ogłoszenie"
+			action="#{carListBB.newCar()}" style="margin: 1em 0em 1em 1em;"/>
+
+		<p:dataTable value="#{carListBB.list}" var="c">
+
+			<p:column priority="5" style="width:20%;">
+				<f:facet name="header">
+					<h:outputText value="Tytuł" />
+				</f:facet>
+					<h:commandLink action="#{carListBB.viewCar(c)}">
+						<h:graphicImage url="#{c.pic1}" class="mr-3" style="width: 100%; max-height: 100%; object-fit: cover;"/>
+					</h:commandLink>
+			</p:column>
+			
+			<p:column priority="5" style="width:40%;">
+				<f:facet name="header">
+					<h:outputText value="Tytuł" />
+				</f:facet>
+				<h:outputText value="#{c.title}" action="#{carListBB.viewCar(c)}"/>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cena" />
+				</f:facet>
+				<h:outputText value="#{c.price}ZŁ" />
+			</p:column>
+
+			<p:column priority="3" style="width:15%;">
+				<f:facet name="header">
+					<h:outputText value="Data dodania" />
+				</f:facet>
+				<h:outputText value="#{c.date}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column style="width:15%;">
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{carListBB.editCar(c)}" style="margin-bottom: 3px;"/>
+
+				<p:commandButton value="Usuń"
+					action="#{carListBB.deleteCar(c)}" update="@form" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+			</div>
+	    </div>
+	    
+	</ui:define>
+</ui:composition>
+

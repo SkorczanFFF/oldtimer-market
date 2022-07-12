@@ -1,0 +1,93 @@
+<!-- annouceAdd page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	
+	<h:head>
+		<title>Dodaj Ogłoszenie - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+		
+			<div class="contaitner-small" style="width:70%; height: 100%; background-color: #1a1a1a; margin-left: auto; margin-right: auto; margin-bottom: 10px; padding-bottom: 5em; display: block; z-index: -1;">
+				<div class="containter-large" style=" margin-left: 2em; margin-right: 2em; padding-top: 2em;z-index: -1;">
+				    <br></br>
+				  <img src="public/pics/logo3.png" alt="Logo" class="imgcenter" style="width:35%; padding-bottom:2em; display: block;margin-left: auto; margin-right: auto;"></img>
+				<legend style="font-size: 225%; margin: auto; text-align: center; color:#E6E6EE;">DODAJ OGŁOSZENIE</legend>
+				    <br></br>
+					<h:form styleClass="pure-form pure-form-stacked">
+					    <div class="form-row">
+					        <div class="col-md-12 mb-3">
+					            <label>Tytuł</label>
+					            <h:inputText value="#{addBB.title}" required="true" requiredMessage="Podaj tytuł ogłoszenia!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-6 mb-3">
+					            <label>Marka</label>
+					            <h:inputText value="#{addBB.brand}" required="true" requiredMessage="Podaj markę!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-6 mb-3">
+					            <label>Model</label>
+					            <h:inputText value="#{addBB.model}" required="true" requiredMessage="Podaj model!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Przebieg</label>
+					            <h:inputText value="#{addBB.mileage}" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Rok produkcji</label>
+					            <h:inputText value="#{addBB.year}" required="true" requiredMessage="Podaj rok produkcji!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div> 
+					        <div class="col-md-2 mb-3">
+					            <label>Pojemność silnika</label>
+					            <h:inputText value="#{addBB.engine}" required="true" requiredMessage="Podaj email!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>   
+					        <div class="col-md-2 mb-3">
+					            <label>Moc</label>
+					            <h:inputText value="#{addBB.horsepower}" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Cena</label>
+					            <h:inputText value="#{addBB.price}" required="true" requiredMessage="Podaj cenę!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					        <div class="col-md-2 mb-3">
+					            <label>Lokalizacja</label>
+					            <h:inputText value="#{addBB.localization}" required="true" requiredMessage="Podaj lokalizację!" style="border-radius: 0; width: 100%; padding: 10px;" />
+					        </div>
+					    </div>
+
+				        <div class="form-group">
+				            <label for="stuffarea" id="stuff">Opis ogłoszenia</label>
+				            <h:inputTextarea value="#{addBB.content}" rows="10" style="width: 100%;" />
+				        </div>
+				                <div class="form-group">
+				                    <label for="exampleInputFile">Dodaj zdjęcia</label>
+										<h:form enctype="multipart/form-data">
+											<h:inputFile id="uploader" value="#{fileBB.file}" validator="#{fileBB.validate}">
+												<f:ajax listener="#{fileBB.upload}" render="@form"/>
+											</h:inputFile>
+											<h:message for="uploader"/>
+										</h:form>
+				                        <input type="file" class="form-control-file" aria-describedby="uploadHelp"></input>
+				                        <input type="file" class="form-control-file" aria-describedby="uploadHelp"></input>
+				                        <input type="file" class="form-control-file" aria-describedby="uploadHelp"></input>
+				                        <input type="file" class="form-control-file" aria-describedby="uploadHelp"></input>
+				                        <input type="file" class="form-control-file" aria-describedby="uploadHelp"></input>
+				                        
+				                    <small id="uploadHelp" class="form-text text-muted">Dodaj zdjęcia do ogłoszenia dla zwiększenia zainteresowania. Maksymalnie możesz wybrać 6.</small>
+				                </div>
+				        <p:commandButton value="DODAJ" action="#{addBB.add()}" update="messages" styleClass="btn btn-secondary" style="font-weight: normal; float:right; border-radius: 0; background-color:#FFFFFF; color: black;" />
+				  
+				        <input type="hidden" name="id_ann" value="{$annouceForm->id_ann}"></input>
+				</h:form>
+				</div>
+			</div>
+	</ui:define>
+</ui:composition>
+

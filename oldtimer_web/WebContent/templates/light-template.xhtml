@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<h:outputStylesheet name="css/style.css" library="template" />
+	</h:head>
+
+	<h:body>
+		<div class="pure-menu pure-menu-horizontal">
+				<p:link outcome="index" value="Strona Główna" styleClass="pure-menu-heading pure-menu-link" />
+			    <ul class="pure-menu-list">
+		    		<h:panelGroup rendered="">
+			    		<li class="pure-menu-item">
+			    			<p:link outcome="moje_wypozyczenia" value="Moje wypożyczenia" styleClass="pure-menu-link" />
+			    		</li>
+			    		<h:panelGroup rendered="#{loggedBB.isUser()}">
+				    		<li class="pure-menu-item">
+				    			<p:link outcome="nowa_ksiazka" value="Dodaj nową ksiażkę" styleClass="pure-menu-link" />
+				    		</li>
+				    		<li class="pure-menu-item">
+				    			<p:link outcome="wypozyczenia" value="Wypożyczenia" styleClass="pure-menu-link" />
+				    		</li>
+			    		</h:panelGroup>
+						<li class="pure-menu-item">
+					        <h:form>
+			      				<h:commandLink action="#{loginBB.logout()}" value="Wyloguj się" styleClass="pure-menu-link" />
+			      			</h:form> 
+				        </li>
+					</h:panelGroup>
+			    </ul>
+			</div>
+		
+		<ui:insert name="content" />
+	
+	</h:body>
+</html>

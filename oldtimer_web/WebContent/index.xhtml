@@ -1,0 +1,60 @@
+<!-- index page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	
+	<h:head>
+		<title>Strona główna - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+		
+		<div id="search" style="background-color: #bdbdbd; height: 100%; width:100%; margin-bottom: 10px; padding-bottom: 1px; margin-top: -1em;">
+			<div id="searchWrapper" style="width: 60%; margin-top: 1em; margin-left: auto; margin-right: auto;">
+				<h:form>
+					<p:inputText value="#{carListBB.brand}" style="margin-top: 1em; width:89%; border-radius: 0;"/>
+					<p:commandButton value="SZUKAJ" style="width: 10.5%; border-radius: 0; background-color: #1b9acf; margin-bottom: 10px;" update="form-table" />
+					
+					<div class="fastCats">	
+						<p:commandButton action="#{carListBB.newest}" value="Najnowsze" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; background-color: #1b9acf;" update="form-table"/>
+						<p:commandButton value="Najtańsze" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; background-color: #1b9acf;" update="form-table"/>
+						<p:commandButton value="Najdroższe" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; background-color: #1b9acf;" update="form-table"/>
+					</div>
+				</h:form>
+
+			</div>
+		</div>		
+	
+		<div class="contaitner-small" style="max-width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 10px; display: block; z-index: -1;">
+
+		<h:form id="form-table">
+			<ui:repeat value="#{carListBB.list}" var="c">				
+						<div class="media border p-2" style="align: center; margin-bottom: 1em;">
+					            <h:commandLink action="#{carListBB.viewCar(c)}">
+								    <h:graphicImage url="#{c.pic1}" class="mr-3" style="width: 200px; max-height: 120px; object-fit: cover;"/>
+								</h:commandLink>
+							            <div class="media-body" style="border-bottom: 1px solid #1b9acf;">
+							            <h:commandLink action="#{carListBB.viewCar(c)}">
+							                <h4 class="title" style="font-size: 17px;"><h:outputText value="#{c.title}" action="#{carListBB.viewCar(c)}"></h:outputText> - <h:outputText style="color:#1b9acf;" value="#{c.price}zł"></h:outputText></h4>
+							            </h:commandLink>    
+						                <p style="margin-left: 10px;">Rok produkcji: <h:outputText value="#{c.year}" /></p> 
+						                <p style="margin-top: -15px; margin-left: 10px;">Lokalizacja: <h:outputText value="#{c.localization}" /></p>        
+						            	<div>
+						            		<small><i class="date" style="float:right; font-size: 11px; margin-right: 3px; margin-top: 15px; z-index: -1;">Dodano <h:outputText value="#{c.date}" /></i></small>
+						            	</div>
+					            </div>
+					    </div>
+			</ui:repeat>
+        		    
+		</h:form>
+	    </div>
+	</ui:define>
+</ui:composition>
+

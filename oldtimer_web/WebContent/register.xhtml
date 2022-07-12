@@ -1,0 +1,57 @@
+<!-- register page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	<h:head>
+		<title>Rejestracja - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+
+			  <div class="contaitner-small" style="width:45%; height: 100%; background-color: #1a1a1a; margin-left: auto; margin-right: auto; margin-bottom: 15px; padding-bottom: 5em;">
+			  	<div class="containter-large" style=" margin-left: 2em; margin-right: 2em; padding-top: 2em;">
+			      <br></br>
+			
+			    <img src="public/pics/logo.png" alt="Logo" class="imgcenter" style="width:70%; padding-bottom:2em; display: block;margin-left: auto; margin-right: auto;"></img>
+			
+			        <legend style="font-size: 225%; margin: auto; text-align: center; color:#E6E6EE;">REJESTRACJA</legend>
+			          <br></br>
+			        <h:form styleClass="pure-form pure-form-stacked">
+				        <div class="form-group">
+				          <label>Nazwa użytkownika</label>
+				          <h:inputText value="#{registerBB.nick}" required="true" requiredMessage="Podaj nick!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				          <small  class="form-text text-muted">Pod tą nazwą będziesz znany na portalu.</small>
+				        </div>
+				        <div class="form-group">
+				          <label>Adres e-mail</label>
+				          <h:inputText value="#{registerBB.mail}" required="true" requiredMessage="Podaj mail!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Numer telefonu</label>
+				          <h:inputText value="#{registerBB.number}" required="false"  style="border-radius: 0; width: 100%; padding: 10px;" />
+				          <small  class="form-text text-muted">Numer kontaktowy. Możesz go uzupełnić później.</small>
+				        </div>
+				        <div class="form-group">
+				          <label>Hasło</label>
+				          <h:inputSecret value="#{registerBB.pass}" required="true" placeholder="Hasło" requiredMessage="Podaj hasło!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				          <small  class="form-text text-muted" >Twoje tajne hasło. Nie podawaj go nikomu!</small>
+				        </div>
+				        <div class="form-group">
+				          <label>Powtórz hasło</label>
+				          <h:inputSecret value="#{registerBB.pass}" required="true" placeholder="Hasło" requiredMessage="Powtórz hasło!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <p:commandButton value="Wykonaj" action="#{registerBB.register()}" update="messages" styleClass="btn btn-secondary" style="font-weight: normal; float:right; border-radius: 0; background-color:#FFFFFF; color: black;" />
+					</h:form>
+			  	</div>
+			  </div>
+
+	</ui:define>
+</ui:composition>
+

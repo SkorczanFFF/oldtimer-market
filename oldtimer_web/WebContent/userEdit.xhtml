@@ -1,0 +1,55 @@
+<!-- register page created by Maciej Skorus -->
+
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/main-template.xhtml"
+>
+	<ui:define name="content">
+	<h:head>
+		<title>Edycja uzytkownika - OldtimerMarket</title>
+	</h:head>
+		
+		<p:messages id="messages" />
+
+			  <div class="contaitner-small" style="width:45%; height: 100%; background-color: #1a1a1a; margin-left: auto; margin-right: auto; margin-bottom: 15px; padding-bottom: 5em;">
+			  	<div class="containter-large" style=" margin-left: 2em; margin-right: 2em; padding-top: 2em;">
+			      <br></br>	
+			        <legend style="font-size: 225%; margin: auto; text-align: center; color:#E6E6EE;">EDYCJA USERA</legend>
+			          <br></br>
+			        <h:form styleClass="pure-form pure-form-stacked" rendered="#{userEditBB.user != null}">
+				        <div class="form-group">
+				          <label>Nazwa użytkownika</label>
+				          <h:inputText value="#{userEditBB.user.nick}" required="true" requiredMessage="Podaj nick!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Adres e-mail</label>
+				          <h:inputText value="#{userEditBB.user.mail}" required="true" requiredMessage="Podaj mail!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Numer telefonu</label>
+				          <h:inputText value="#{userEditBB.user.number}" required="false"  style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Hasło</label>
+				          <h:inputSecret value="#{userEditBB.user.pass}" required="true" placeholder="Hasło" requiredMessage="Podaj hasło!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Powtórz hasło</label>
+				          <h:inputSecret value="#{userEditBB.user.pass}" required="true" placeholder="Hasło" requiredMessage="Powtórz hasło!" style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <div class="form-group">
+				          <label>Typ konta (admin/user)</label>
+				          <h:inputText value="#{userEditBB.user.role}" required="false"  style="border-radius: 0; width: 100%; padding: 10px;" />
+				        </div>
+				        <p:commandButton value="Wykonaj" action="#{userEditBB.saveData()}" update="messages" styleClass="btn btn-secondary" style="font-weight: normal; float:right; border-radius: 0; background-color:#FFFFFF; color: black;" />
+					</h:form>
+			  	</div>
+			  </div>
+
+	</ui:define>
+</ui:composition>
+

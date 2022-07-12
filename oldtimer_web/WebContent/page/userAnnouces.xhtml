@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{carEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<title>Edycja ogłoszenia - OldtimerMarket</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja ogłoszenia">
+
+		<h:form rendered="#{carEditBB.car != null}">
+			<h:panelGrid columns="11" cellpadding="5">
+
+				<h:outputLabel for="c-title" value="Tytuł:" />
+				<p:inputText id="c-title" value="#{carEditBB.car.title}"
+					required="true" requiredMessage="Podaj tytuł"
+					validatorMessage="co najwyżej 64 znaki">
+					<f:validateLength maximum="64" />
+				</p:inputText>
+				<p:message for="c-title" display="icon"/>
+
+				<h:outputLabel for="c-content" value="Treść:" />
+				<p:inputText id="c-content" value="#{carEditBB.car.content}"
+					required="true">
+					<f:validateLength maximum="5000" />
+				</p:inputText>
+				<p:message for="c-content" display="icon"/>
+				
+				<h:outputLabel for="c-price" value="Cena:" />
+				<p:inputText id="c-price" value="#{carEditBB.car.price}"
+					required="true" requiredMessage="Podaj cenę"
+					validatorMessage="co najwyżej 10 znaków">
+					<f:validateLength maximum="10" />
+				</p:inputText>
+				<p:message for="c-price" display="icon"/>
+				
+				<h:outputLabel for="c-brand" value="Marka:" />
+				<p:inputText id="c-brand" value="#{carEditBB.car.brand}"
+					required="false" >
+					<f:validateLength maximum="50" />
+				</p:inputText>
+				<p:message for="c-brand" display="icon"/>
+				
+				<h:outputLabel for="c-model" value="Model:" />
+				<p:inputText id="c-model" value="#{carEditBB.car.model}"
+					required="false" >
+					<f:validateLength maximum="50" />
+				</p:inputText>
+				<p:message for="c-model" display="icon"/>
+				
+				<h:outputLabel for="c-year" value="Rok:" />
+				<p:inputText id="c-year" value="#{carEditBB.car.year}"
+					required="false" >
+					<f:validateLength maximum="4" />
+				</p:inputText>
+				<p:message for="c-year" display="icon"/>
+
+				<h:outputLabel for="c-mileage" value="Przebieg:" />
+				<p:inputText id="c-mileage" value="#{carEditBB.car.mileage}"
+					required="false" >
+					<f:validateLength maximum="16" />
+				</p:inputText>
+				<p:message for="c-mileage" display="icon"/>
+				
+				<h:outputLabel for="c-engine" value="Pojemność:" />
+				<p:inputText id="c-engine" value="#{carEditBB.car.engine}"
+					required="false" >
+					<f:validateLength maximum="5" />
+				</p:inputText>
+				<p:message for="c-engine" display="icon"/>
+				
+				<h:outputLabel for="c-horsepower" value="Moc:" />
+				<p:inputText id="c-horsepower" value="#{carEditBB.car.horsepower}"
+					required="false" >
+					<f:validateLength maximum="4" />
+				</p:inputText>
+				<p:message for="c-horsepower" display="icon"/>
+
+				<h:outputLabel for="c-date" value="Data prod.:" />
+				<p:inputText id="c-date" value="#{carEditBB.car.date}"
+					required="true" requiredMessage="Podaj datę produkcji"
+					converterMessage="Niepoprawny format daty (np. 15-07-1987)">
+					<f:convertDateTime pattern="dd-MM-yyyy"/>
+			    </p:inputText>
+				<p:message for="c-date" display="icon"/>
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{carEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="carList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<h:outputStylesheet name="css/style.css" library="template" />
+		<h:outputStylesheet name="css/boots.css" library="template" />
+		<h:outputStylesheet name="css/pure-min.css" library="template" />
+	</h:head>
+
+	<h:body>
+		<ui:fragment rendered="#{empty loggedBB.id}">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="top: 0; width: 100%; padding:5px; margin-bottom: 1em;">
+			  <div class="container" style="padding:0;">
+			        <img src="public/pics/logo.png" alt="Logo" style="height: 11%; width: 11%;"></img>
+			        <p:link outcome="index" value="&#10023; Oldtimer Market" styleClass="navbar-brand" style="padding-left: 0; font-weight: normal; font-size: 18px; border-bottom: 0;" />
+			    <div class="nawbar">
+			      <ul class="navbar-nav ml-auto">
+			        <li class="nav-item">
+			          <p:link outcome="index" value="Strona Główna" styleClass="nav-link" style="font-weight: normal;"/>
+			        </li>
+			        <li class="nav-item">
+			          <p:link outcome="login" value="Zaloguj" styleClass="nav-link" style="font-weight: normal;"/>
+			        </li>
+			      </ul>  
+			    </div>
+			  </div>
+			</nav>
+		</ui:fragment>
+		
+		<ui:fragment rendered="#{not empty loggedBB.id}">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="top: 0; width: 100%; padding:5px; margin-bottom: 1em;">
+			  <div class="container" style="padding:0;">
+			        <img src="public/pics/logo.png" alt="Logo" style="height: 11%; width: 11%;"></img>
+			        <p:link outcome="index" value="&#10023; Oldtimer Market" styleClass="navbar-brand" style="padding-left: 0; font-weight: normal; font-size: 18px; border-bottom: 0;" />
+			    <div class="nawbar">
+			      <h:form>
+			      <ul class="navbar-nav ml-auto">
+			        <li class="nav-item">
+			          <p:link outcome="index" value="Strona Główna" styleClass="nav-link" style="font-weight: normal;"/>
+			        </li>
+			        <li class="nav-item">
+			          <p:link outcome="profile" value="Profil" styleClass="nav-link" style="font-weight: normal;"><f:param name="p" value="#{p.idperson}" /></p:link>
+			        </li>	
+			        <li class="nav-item">
+			          <p:link rendered="#{loggedBB.isAdmin()}" outcome="panel" value="Panel" styleClass="nav-link" style="font-weight: normal;"/>
+			        </li>				        
+			        <li class="nav-item">
+			          <h:commandLink action="#{loginBB.logout()}" value="Wyloguj" styleClass="nav-link" style="font-weight: normal; margin-top: 2px; font-size: 14px;" />
+			        </li>
+			        <li class="nav-item">
+					  <p:link outcome="annouceAdd" value="Dodaj Ogłoszenie &#x276F;" styleClass="nav-link" style="font-weight: normal;"/>
+			        </li>
+			      </ul>  
+			      </h:form>
+			    </div>
+			  </div>
+			</nav>
+		</ui:fragment>
+		
+	<ui:insert name="content" />
+		
+		<footer class="py-4 bg-primary" style=" bottom:0; flex-shrink: 0; margin-top: 1em;">
+		    <div class="container">
+		      <p class="m-0 text-center text-white" style= "">Copyright by Maciej Skorus 2019 - 2020. Strona stworzona w celach edukacyjnych.</p>
+		    </div>
+		</footer>
+	</h:body>
+</html>
