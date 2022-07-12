@@ -15,6 +15,8 @@ Old project from 2020 on Java Server Faces. Small application like OLX/Otomoto f
 - JSF
 - MySQL
 - some JS for galleries (libary)
+- Wildfly 18.0.0
+- mysql-connector-java-5.1.48
 
 ### Summary
 Project is dead, added to GitHub for archivization. It could be useful for some people too.
